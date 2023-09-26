@@ -1,10 +1,15 @@
 import cv2
 import numpy as np
 
-cameraCapturando = cv2.VideoCapture(0)
+video = cv2.VideoCapture()
+ip = "https://10.139.5.214:8080/video"
+video.open(ip)
 
 while True:
-    _, frame =cameraCapturando.read()
+    _, frame = video.read()
+    frame = cv2.rotate(frame, cv2.ROTATE_180)
+    fator = 0.5
+    frame = cv2.resize(frame, (int(1370 * fator), int(749 * fator)))
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     _, threshold = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
     kernel = np.ones((5, 5), np.uint8)
@@ -17,5 +22,5 @@ while True:
     cv2.imshow("Frame", frame)
     if cv2.waitKey(1) == ord('q'):
         break
-cameraCapturando.release()
+video.release()
 cv2.destroyAllWindows()

@@ -4,7 +4,7 @@ import time
 
 # usando camera do celular como webcam
 video = cv2.VideoCapture()
-ip = "https://192.168.0.105:8080/video"
+ip = "https://10.139.5.214:8080/video"
 video.open(ip)
 BGR_blue = (255, 0, 0)
 BGR_green = (0, 255, 0)
@@ -12,12 +12,11 @@ BGR_yellow = (0, 255, 255)
 borda1 = 1
 borda2 = 2
 while True:
-    check, img = video.read()
-    img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-    x1, x2 = 100, 700  # Coordenadas do canto superior esquerdo
-    y1, y2 = 100, 800  # Coordenadas do canto inferior direito
 
-    img = img[y1:y2, x1:x2]
+    check, img = video.read()
+    img = cv2.rotate(img, cv2.ROTATE_180)
+    fator = 0.5
+    img = cv2.resize(img, (int(1370 * fator), int(749 * fator)))
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, threshold = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
     kernel = np.ones((5, 5), np.uint8)

@@ -32,6 +32,7 @@ for arq in images:
         plt.imshow(imagem)
         plt.axis('off')  # Desligue os eixos para evitar números nos cantos
         plt.show()
+
 """
 
 """
