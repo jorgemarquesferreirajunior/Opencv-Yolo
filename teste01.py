@@ -10,18 +10,19 @@ for path in paths:
         images_lis = os.listdir(images_path)
         for image in images_lis:
             images_cv2.append(os.path.join(images_path, image))
-
-push_alg = cv2.CascadeClassifier('C:/Users/Mi/Documents/GitHub/Opencv-Yolo/haarcascades'
-                                 '/haarcascade_frontalface_default.xml')
-#indice = int(input(f"\nEscolha um numero entre 0 e {len(images_cv2) - 1}: "))
+path = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_frontalface_default.xml"
+push_alg = cv2.CascadeClassifier(path)
+fator = 0.5
 indice = 1
 try:
     imagem = cv2.imread(images_cv2[indice])
+    imagem = cv2.resize(imagem, (int(1370 * fator), int(749 * fator)))
     imagem_cinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
     faces = push_alg.detectMultiScale(imagem_cinza, scaleFactor=1.05, minNeighbors=4, minSize=(100, 100))
     for x, y, w, h in faces:
         cv2.rectangle(imagem, (x, y), (x + w, y + h), (0, 255, 0), 2)
-    cv2.imshow("Faces ", imagem)
+    cv2.imshow("Faces", imagem)
+    print(cv2.getWindowImageRect("Faces"))
     cv2.waitKey()
 except:
     print("Numero errado")

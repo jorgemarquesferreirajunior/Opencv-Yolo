@@ -6,7 +6,8 @@ import numpy as np
 # detectando a mao...
 
 video = cv2.VideoCapture()
-ip = "https://10.139.5.214:8080/video"
+ip1 = "https://10.139.5.214:8080/video"
+ip = "https://192.168.0.105:8080/video"
 video.open(ip)
 # video.set(3, 1280)
 # video.set(4, 720)
@@ -39,7 +40,6 @@ while True:
         except:
             right_hand = ""
             left_hand = ""
-        print(right_hand, left_hand)
         x, y, w, h = hands[0][0]['bbox']
         # print(f"INDEX_FINGER_MCP: {hand[5]}| PINKY_MCP: {hand[17]}")
 
@@ -52,7 +52,11 @@ while True:
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 3)
         #cv2.putText(img, str(int(distanciaCM)), (), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), -1)
         cvzone.putTextRect(img, str(int(distanciaCM))+"cm", (x+5, y-10))
+    else:
 
+        right_hand = ""
+        left_hand = ""
+    print("Mao 1:" + right_hand, "Mao 2:" + left_hand)
     cv2.imshow("Window", img)
     if cv2.waitKey(1) == ord('q'):
         break
