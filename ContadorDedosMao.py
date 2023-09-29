@@ -26,7 +26,7 @@ mpDraw = mp.solutions.drawing_utils
 def print_contador(img):
     global contador
     while True:
-        cv2.putText(img, str(contador), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 0, 0), 3)
+        cv2.putText(img, str(contador), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 0), 3)
         # print(f"Contagem de dedos: {contador}")
         time.sleep(1)
 

@@ -1,4 +1,5 @@
-import numpy as np, cv2
+import numpy as np
+import cv2
 
 vaga1 = [1, 89, 108, 213]
 vaga2 = [115, 87, 152, 211]
@@ -14,8 +15,9 @@ for i in range(1, 9):
     nome_vaga = f'vaga{i}'
     lista_vaga = locals()[nome_vaga]
     vagas.append(lista_vaga)
-
-pathVideo = "C:/Users/engen/Desktop/Docs/Opencv-all/Arquivos_aula_contador_vagas/video.mp4"
+pathAcer  ="C:/Users/Mi/Desktop/video.mp4"
+pathDell = "C:/Users/engen/Desktop/Docs/Opencv-all/Arquivos_aula_contador_vagas/video.mp4"
+pathVideo = pathAcer
 video = cv2.VideoCapture(pathVideo)
 
 while True:
@@ -39,8 +41,8 @@ while True:
     cv2.putText(img, f"LIVRE: {qtd_vagas_livres}/8", (30, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     cv2.imshow("Video", img)
 
-    # cv2.imshow("Video Dl", imgDl)
-    if cv2.waitKey(1) == ord('q'):
+    cv2.imshow("Video Dl", imgDl)
+    if cv2.waitKey(10) == ord('q'):
         break
 video.release()
 cv2.destroyAllWindows()
