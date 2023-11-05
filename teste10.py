@@ -9,8 +9,7 @@ video = cv2.VideoCapture()
 ip1 = "https://10.139.5.214:8080/video"
 ip = "https://192.168.0.105:8080/video"
 video.open(ip)
-# video.set(3, 1280)
-# video.set(4, 720)
+
 detectorMao = HandDetector(detectionCon=0.8, maxHands=2)
 
 distPixels = [300, 245, 200, 170, 145, 130, 112, 103, 93, 87, 80, 75, 70, 67, 62, 59, 57]
