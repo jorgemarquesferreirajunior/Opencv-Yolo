@@ -6,7 +6,9 @@ import time
 # Necessário para criar arquivo csv contendo os objetos
 from csv import DictWriter
 # Definindo a camera de captura
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture()
+ip = "https://192.168.0.105:8080/video"
+camera.open(ip)
 # Altura e largura
 h, w = None, None
 # Carregando csv com nome dos objetos treinados para identificar
@@ -31,7 +33,7 @@ colours = np.random.randint(0, 255, size=(len(labels), 3), dtype='uint8')
 # lood de captura
 with open('result.csv', 'w') as arquivo:
     cabecalho = ['Detectado', 'Acuracia']
-    escritor_csv  =DictWriter(arquivo, fieldnames=cabecalho)
+    escritor_csv = DictWriter(arquivo, fieldnames=cabecalho)
     escritor_csv.writeheader()
     while True:
         # captura a camera frame por frame:

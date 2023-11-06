@@ -3,15 +3,15 @@ import cvzone
 
 # detectando o olho...
 # seleciona a camera: defult = 0
-webCamera = cv2.VideoCapture(0)
+
 webCamera = cv2.VideoCapture()
-ip = "https://10.139.5.214:8080/video"
+ip = "https://192.168.0.105:8080/video"
 webCamera.open(ip)
 # seleciona o arquivo de base de dados para comparação
-classificadorFace = cv2.CascadeClassifier('C:/Users/Mi/Documents/GitHub/Opencv-Yolo/haarcascades'
-                                    '/haarcascade_frontalface_default.xml')
-classificadorEye = cv2.CascadeClassifier('C:/Users/Mi/Documents/GitHub/Opencv-Yolo/haarcascades'
-                                 '/haarcascade_eye.xml')
+classificadorFace = cv2.CascadeClassifier('C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades'
+                                          '/haarcascade_frontalface_default.xml')
+classificadorEye = cv2.CascadeClassifier('C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades'
+                                         '/haarcascade_eye.xml')
 # criando algumas variaveis de cores para facilitar o código
 colorGray = cv2.COLOR_BGR2GRAY
 colorRedRGB = (255, 0, 0)
@@ -25,7 +25,7 @@ while True:
 
     # lendo a informação obtida pela camera
     camera, frame = webCamera.read()
-    frame = cv2.rotate(frame, cv2.ROTATE_180)
+    #frame = cv2.rotate(frame, cv2.ROTATE_180)
     fator = 0.5
     frame = cv2.resize(frame, (int(1370 * fator), int(749 * fator)))
     # dados obtidos pela camera em uma escala de cores cinza

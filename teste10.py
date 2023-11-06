@@ -24,7 +24,7 @@ left_hand = ""
 while True:
     _, img = video.read()
 
-    img = cv2.rotate(img, cv2.ROTATE_180)
+    #img = cv2.rotate(img, cv2.ROTATE_180)
     fator = 0.5
     img = cv2.resize(img, (int(1370 * fator), int(749 * fator)))
     hands = detectorMao.findHands(img, draw=True)# draw=True mostra os pontos das falanges

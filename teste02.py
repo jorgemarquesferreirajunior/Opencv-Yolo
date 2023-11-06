@@ -10,11 +10,13 @@ for path in paths:
         images_lis = os.listdir(images_path)
         for image in images_lis:
             images_cv2.append(os.path.join(images_path, image))
-path1 = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_frontalface_default.xml"
-path_eye = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_eye.xml"
-push_face = cv2.CascadeClassifier(path1)
-push_eye = cv2.CascadeClassifier(path_eye)
-indice = 3
+pathAcer = ""
+pathDell = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_frontalface_default.xml"
+path_eyeAcer = ""
+path_eyeDell = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_eye.xml"
+push_face = cv2.CascadeClassifier(pathDell)
+push_eye = cv2.CascadeClassifier(path_eyeDell)
+indice = 5
 gray = cv2.COLOR_BGR2GRAY
 color1 = (0, 255, 0)
 color2 = (0, 0, 255)

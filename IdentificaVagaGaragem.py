@@ -15,19 +15,22 @@ for i in range(1, 9):
     nome_vaga = f'vaga{i}'
     lista_vaga = locals()[nome_vaga]
     vagas.append(lista_vaga)
-pathAcer  ="C:/Users/Mi/Desktop/video.mp4"
+pathAcer = "C:/Users/Mi/Desktop/video.mp4"
 pathDell = "C:/Users/engen/Desktop/Docs/Opencv-all/Arquivos_aula_contador_vagas/video.mp4"
-pathVideo = pathAcer
-video = cv2.VideoCapture(pathVideo)
+pathVideo = pathDell
+video = cv2.VideoCapture(pathDell)
 
 while True:
     check, img = video.read()
     imgCinza = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img_laplace = cv2.Laplacian(img, cv2.CV_8U)
+    img_laplace2 = cv2.Laplacian(imgCinza, cv2.CV_8U)
     imgTh = cv2.adaptiveThreshold(imgCinza, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 25, 16)
     imgBlur = cv2.medianBlur(imgTh, 5)
     kernel = np.ones((3,3), np.int8)
     imgDl = cv2.dilate(imgBlur, kernel)
     qtd_vagas_livres = 0
+
     for x, y, w, h in vagas:
         recorte_vaga = imgDl[y:y+h, x:x+w]
         qtd_white_pixels = cv2.countNonZero(recorte_vaga)
@@ -39,10 +42,17 @@ while True:
             qtd_vagas_livres += 1
     cv2.rectangle(img, (30, 30), (225, 70), (255, 0, 0), -1)
     cv2.putText(img, f"LIVRE: {qtd_vagas_livres}/8", (30, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-    cv2.imshow("Video", img)
 
+    cv2.imshow("Video", img)
+    cv2.imshow("Laplacian", img_laplace)
+    cv2.imshow("Laplacian2", img_laplace2)
+
+    # cv2.imshow("imgCinza", imgCinza)
+    # cv2.imshow("imgTh", imgTh)
+    # cv2.imshow("imgBlur", imgBlur)
     cv2.imshow("Video Dl", imgDl)
-    if cv2.waitKey(10) == ord('q'):
+
+    if cv2.waitKey(1) == ord('q'):
         break
 video.release()
 cv2.destroyAllWindows()

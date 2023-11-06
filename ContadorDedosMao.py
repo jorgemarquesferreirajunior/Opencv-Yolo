@@ -4,7 +4,10 @@ import threading
 import time
 
 ipDell = ""
-video = cv2.VideoCapture(0)
+
+video = cv2.VideoCapture()
+ip = "https://192.168.0.105:8080/video"
+video.open(ip)
 # video.open(ipDell)
 
 hand = mp.solutions.hands

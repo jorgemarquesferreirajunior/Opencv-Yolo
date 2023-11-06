@@ -10,10 +10,11 @@ for path in paths:
         images_lis = os.listdir(images_path)
         for image in images_lis:
             images_cv2.append(os.path.join(images_path, image))
-path = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_frontalface_default.xml"
-push_alg = cv2.CascadeClassifier(path)
+pathAcer = ""
+pathDell = "C:/Users/engen/Documents/GitHub/Opencv-Yolo/haarcascades/haarcascade_frontalface_default.xml"
+push_alg = cv2.CascadeClassifier(pathDell)
 fator = 0.5
-indice = 1
+indice = 5
 try:
     imagem = cv2.imread(images_cv2[indice])
     imagem = cv2.resize(imagem, (int(1370 * fator), int(749 * fator)))

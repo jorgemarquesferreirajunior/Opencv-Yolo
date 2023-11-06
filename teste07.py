@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 
 video = cv2.VideoCapture()
-ip = "https://10.139.5.214:8080/video"
+ip = "https://192.168.0.105:8080/video"
 video.open(ip)
 
 while True:
     _, frame = video.read()
-    frame = cv2.rotate(frame, cv2.ROTATE_180)
+    #frame = cv2.rotate(frame, cv2.ROTATE_180)
     fator = 0.5
     frame = cv2.resize(frame, (int(1370 * fator), int(749 * fator)))
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
